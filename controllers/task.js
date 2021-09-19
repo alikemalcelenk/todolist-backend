@@ -20,3 +20,15 @@ exports.add = (req, res) => {
       res.status(500).json(err)
     })
 }
+
+exports.get = (req, res) => {
+  const promise = Task.find({}).sort('-created_at')
+
+  promise
+    .then((data) => {
+      res.json({ tasks: data })
+    })
+    .catch((err) => {
+      res.status(500).json(err)
+    })
+}
