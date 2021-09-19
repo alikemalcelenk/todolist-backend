@@ -32,3 +32,19 @@ exports.get = (req, res) => {
       res.status(500).json(err)
     })
 }
+
+exports.update = (req, res) => {
+  const { id } = req.params
+
+  Task.findByIdAndUpdate(id, req.body, { new: true })
+    .then((task) => {
+      if (task != null) {
+        res.json({ task })
+      } else {
+        res.status(500).json()
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err)
+    })
+}
