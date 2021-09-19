@@ -48,3 +48,19 @@ exports.update = (req, res) => {
       res.status(500).json(err)
     })
 }
+
+exports.delete = (req, res) => {
+  const { id } = req.params
+
+  Task.findByIdAndRemove(id)
+    .then((task) => {
+      if (!task) {
+        res.status(500).json()
+      } else {
+        res.json({ task })
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err)
+    })
+}

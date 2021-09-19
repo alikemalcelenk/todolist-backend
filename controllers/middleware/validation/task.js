@@ -41,3 +41,18 @@ exports.update = (req, res, next) => {
       res.status(500).json({ error: 'Validation Error' })
     })
 }
+
+exports.delete = (req, res, next) => {
+  const deleteSchema = Joi.object().keys({
+    id: Joi.string().required().length(24)
+  })
+
+  deleteSchema
+    .validateAsync(req.params)
+    .then(() => {
+      next()
+    })
+    .catch(() => {
+      res.status(500).json({ data: 'Validation Error' })
+    })
+}
