@@ -1,6 +1,6 @@
-const indexController = require('../controllers/index');
-const router = require('express').Router();
+const router = require('express').Router()
+const indexController = require('../controllers/index')
 
-router.get('/', indexController);
+router.get('/', indexController)
 
-module.exports = router;
+module.exports = router

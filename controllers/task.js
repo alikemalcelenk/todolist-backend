@@ -1,22 +1,22 @@
-const Task = require('../models/Task');
+const Task = require('../models/Task')
 
 exports.add = (req, res) => {
-  const { description } = req.body;
+  const { description } = req.body
 
   const newTask = new Task({
-    description,
-  });
+    description
+  })
 
   newTask
     .save()
     .then((task) => {
       if (task.description) {
-        res.json({ task });
+        res.json({ task })
       } else {
-        res.status(500).json();
+        res.status(500).json()
       }
     })
     .catch((err) => {
-      res.status(500).json(err);
-    });
-};
+      res.status(500).json(err)
+    })
+}

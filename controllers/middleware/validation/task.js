@@ -1,16 +1,16 @@
-const Joi = require('joi');
+const Joi = require('joi')
 
 exports.add = (req, res, next) => {
   const addSchema = Joi.object().keys({
-    description: Joi.string().trim().max(600).required(),
-  });
+    description: Joi.string().trim().max(600).required()
+  })
 
   addSchema
     .validateAsync(req.body)
     .then(() => {
-      next();
+      next()
     })
     .catch(() => {
-      res.status(500).json({ error: 'Validation Error' });
-    });
-};
+      res.status(500).json({ error: 'Validation Error' })
+    })
+}
