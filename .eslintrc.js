@@ -9,7 +9,8 @@ module.exports = {
   rules: {
     'comma-dangle': 'off',
     semi: 'off',
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'no-underscore-dangle': 'off'
   },
   parserOptions: {
     ecmaVersion: 12
