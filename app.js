@@ -4,6 +4,8 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
+const swaggerUI = require('swagger-ui-express')
+const swaggerJsdoc = require('swagger-jsdoc')
 
 const indexRouter = require('./routes/index')
 const taskRouter = require('./routes/task')
@@ -15,6 +17,29 @@ const db = require('./helper/db')()
 
 // cors
 app.use(cors())
+
+// swagger
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Todolist API',
+      version: '1.0.0',
+      description: 'Todolist API Service Documentation.'
+    },
+    servers: [
+      {
+        url: 'https://todolist-api-service.herokuapp.com'
+      },
+      {
+        url: 'http://localhost:3000'
+      }
+    ]
+  },
+  apis: ['./routes/*.js']
+}
+const specs = swaggerJsdoc(options)
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(specs))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
